@@ -78,14 +78,14 @@ const CTA: React.FC<CTAProps> = ({ href, color = "black", children }) => {
     <Link
       href={href}
       ref={linkRef}
-      className="relative h-[52px] pl-5 pr-4 flex items-center bg-foreground rounded-lg overflow-hidden"
+      className="relative h-[52px] pl-5 pr-4 flex items-center rounded-lg overflow-hidden"
       style={{
         clipPath:
           "polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%)",
       }}
     >
       {/* Background */}
-      <div className="absolute inset-0 origin-center scale-125 pointer-events-none">
+      <div className="absolute inset-0 bg-foreground origin-center scale-125 pointer-events-none">
         <div
           ref={bgRef}
           className={clsx(

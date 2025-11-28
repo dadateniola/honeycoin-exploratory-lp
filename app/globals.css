@@ -21,6 +21,8 @@
   /* Colors */
   --color-primary: #134e64;
   --color-secondary: #fafafa;
+  --color-marquee: #fbca4a;
+  --color-api-docs-card-bg: #8c75d1;
 
   /* Spacing */
   --spacing-navbar-height: 80px;
@@ -55,5 +57,15 @@
     &:disabled {
       @apply cursor-default;
     }
+  }
+}
+
+/* Keyframes */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
