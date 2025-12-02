@@ -110,22 +110,6 @@ export const ShootingStarIcon: React.FC<SVGProps> = ({ size = 20 }) => (
   </svg>
 );
 
-export const HeroCurve: React.FC<SVGProps> = ({ className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="1432"
-    height="1023"
-    viewBox="0 0 1432 1023"
-    fill="none"
-    className={className}
-  >
-    <path
-      d="M574.952 1154.53C560.852 663.185 410.409 393.743 0.519641 -66.6191C-0.628762 -67.9089 0.242591 -70 1.96957 -70H1429.37C1431.04 -70 1431.94 -68.024 1430.9 -66.7129C1036.56 431.085 845.583 707.65 845.009 1154.48C845.008 1155.58 844.112 1156.5 843.008 1156.5H576.953C575.87 1156.5 574.983 1155.61 574.952 1154.53Z"
-      fill="#8066CC"
-    />
-  </svg>
-);
-
 export const WalletIcon: React.FC<SVGProps> = ({ size = 32 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

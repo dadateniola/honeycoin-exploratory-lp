@@ -1,5 +1,5 @@
 // Images
-import { HeroCurve, ShootingStarIcon } from "../svg/svg";
+import { ShootingStarIcon } from "../svg/svg";
 
 // Imports
 import CTA from "../cta/cta";
@@ -9,10 +9,17 @@ import { SectionHeading } from "../global/components";
 const Hero = () => {
   return (
     <section id="hero">
-      <div className="relative w-full h-screen bg-primary">
+      <div className="relative w-full h-screen bg-background">
         {/* Background */}
         <div className="absolute inset-0 overflow-hidden">
-          <HeroCurve className="size-full" />
+          <div
+            className="absolute top-1/2 left-0 -translate-y-1/2 w-1/2 h-[110%] bg-primary"
+            style={{ clipPath: "ellipse(80% 100% at 0% 100%)" }}
+          ></div>
+          <div
+            className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-[105%] bg-primary"
+            style={{ clipPath: "ellipse(80% 100% at 100% 100%)" }}
+          ></div>
         </div>
 
         {/* Content */}

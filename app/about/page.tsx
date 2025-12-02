@@ -24,7 +24,7 @@ const About = () => {
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
               <div
-                className="absolute top-1/2 bottom-0 right-0 -translate-y-1/2 w-1/2 h-[110%] bg-primary"
+                className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-[110%] bg-primary"
                 style={{ clipPath: "ellipse(100% 100% at 100% 100%)" }}
               ></div>
             </div>
