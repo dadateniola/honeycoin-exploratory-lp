@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 // Images
 import { RvysionLogo } from "../svg/svg";
 
@@ -8,9 +10,9 @@ import { FOOTER_DATA } from "./data";
 import { FooterCard } from "./components";
 import { SECTION_HEADING_CLASS } from "../global/data";
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section id="footer">
+    <section id="footer" ref={ref}>
       <div className="relative bg-primary overflow-hidden">
         <div className="absolute inset-0"></div>
 
@@ -64,6 +66,8 @@ const Footer = () => {
       </div>
     </section>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;

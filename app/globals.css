@@ -52,6 +52,10 @@
     @apply relative w-full h-full min-h-screen;
   }
 
+  section {
+    @apply relative w-full;
+  }
+
   button {
     @apply cursor-pointer;
 

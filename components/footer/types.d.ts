@@ -4,3 +4,7 @@ export type FooterData = {
 };
 
 export type FooterCardProps = FooterData;
+
+export interface PinnedUntilFooterProps {
+  children: React.ReactNode;
+}
