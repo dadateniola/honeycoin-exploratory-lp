@@ -3,12 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 // Imports
-import { MARQUEE_LOGOS } from "./data";
 import { debounce } from "@/utils/debounce";
+import { MARQUEE_LOGO_CLASS } from "./data";
+import { BRAND_LOGOS, BRAND_LOGOS_MAP } from "../global/data";
 
 // Constants
 const GAP = 24;
 const ITEM_WIDTH = 100;
+const BRAND_LOGOS_COUNT = BRAND_LOGOS.length;
 
 const Marquee = () => {
   // States
@@ -32,7 +34,7 @@ const Marquee = () => {
       const { width } = entry.contentRect;
       const itemsInView = Math.max(
         Math.ceil(width / (ITEM_WIDTH + GAP)),
-        MARQUEE_LOGOS.length
+        BRAND_LOGOS_COUNT
       );
       setItemsInView(itemsInView);
     }, 200);
@@ -58,7 +60,8 @@ const Marquee = () => {
             style={{ gap: GAP, paddingLeft: GAP }}
           >
             {Array.from({ length: itemsInView }).map((_, idx) => {
-              const Logo = MARQUEE_LOGOS[idx % MARQUEE_LOGOS.length];
+              const brand = BRAND_LOGOS[idx % BRAND_LOGOS_COUNT];
+              const Logo = BRAND_LOGOS_MAP[brand];
 
               return (
                 <div
@@ -66,7 +69,7 @@ const Marquee = () => {
                   className="custom-flex-center"
                   style={{ width: ITEM_WIDTH }}
                 >
-                  {<Logo />}
+                  {<Logo className={MARQUEE_LOGO_CLASS[brand]} />}
                 </div>
               );
             })}

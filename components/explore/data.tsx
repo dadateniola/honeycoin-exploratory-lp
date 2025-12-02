@@ -2,22 +2,19 @@
 import type { ExploreData } from "./types";
 
 // Images
-import {
-  RyobiLogo,
-  DreamVCLogo,
-  GetMyBoatLogo,
-  HoneyCoinLogo,
-  LateralFrontiersLogo,
-} from "../svg/svg";
+import { BrandLogo } from "../global/types";
 
 // Constants
-export const MARQUEE_LOGOS = [
-  GetMyBoatLogo,
-  LateralFrontiersLogo,
-  HoneyCoinLogo,
-  RyobiLogo,
-  DreamVCLogo,
-];
+export const MARQUEE_LOGO_CLASS: Record<BrandLogo, string> = {
+  "get-my-boat": "max-w-[97px] max-h-[17px]",
+  "lateral-frontiers": "max-w-[78px] max-h-[20px]",
+  "up-guys": "max-w-[84px] max-h-[16px]",
+  "honey-coin": "max-w-[98px] max-h-[17px]",
+  kins: "max-w-[60px] max-h-[16px]",
+  ryobi: "max-w-[67px] max-h-[26px]",
+  "dream-vc": "max-w-[95px] max-h-[19px]",
+  voxtell: "max-w-[98px] max-h-[32px]",
+};
 
 export const EXPLORE_DATA: ExploreData[] = [
   {
