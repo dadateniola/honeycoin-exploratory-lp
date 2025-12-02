@@ -1,10 +1,9 @@
-import Link from "next/link";
-
 // Images
-import { ArrowRightIcon, HeroCurve, ShootingStarIcon } from "../svg/svg";
+import { HeroCurve, ShootingStarIcon } from "../svg/svg";
 
 // Imports
 import CTA from "../cta/cta";
+import AltCTA from "../cta/alt-cta";
 import { SectionHeading } from "../global/components";
 
 const Hero = () => {
@@ -45,16 +44,7 @@ const Hero = () => {
                 GET STARTED
               </CTA>
 
-              <Link
-                href="/about"
-                className="h-[52px] pl-5 pr-4 flex items-center gap-3 bg-white/10 rounded-lg"
-              >
-                <p className="font-semibold underline -tracking-[0.16px] whitespace-nowrap">
-                  ABOUT US
-                </p>
-
-                <ArrowRightIcon />
-              </Link>
+              <AltCTA href="/about">ABOUT US</AltCTA>
             </div>
           </div>
         </div>

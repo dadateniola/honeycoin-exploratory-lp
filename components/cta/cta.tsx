@@ -12,6 +12,7 @@ import { ArrowRightIcon } from "../svg/svg";
 // Imports
 import gsap from "gsap";
 import clsx from "clsx";
+import { isExternalLink } from "@/utils/isExternalLink";
 
 const CTA: React.FC<CTAProps> = ({ href, color = "black", children }) => {
   // Refs
@@ -74,8 +75,12 @@ const CTA: React.FC<CTAProps> = ({ href, color = "black", children }) => {
     };
   }, [color]);
 
+  // Render
+  const external = isExternalLink(href);
+  const Anchor = external ? "a" : Link;
+
   return (
-    <Link
+    <Anchor
       href={href}
       ref={linkRef}
       className="relative h-[52px] pl-5 pr-4 flex items-center rounded-lg overflow-hidden"
@@ -83,6 +88,7 @@ const CTA: React.FC<CTAProps> = ({ href, color = "black", children }) => {
         clipPath:
           "polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%)",
       }}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {/* Background */}
       <div className="absolute inset-0 bg-foreground origin-center scale-125 pointer-events-none">
@@ -108,7 +114,7 @@ const CTA: React.FC<CTAProps> = ({ href, color = "black", children }) => {
 
         <ArrowRightIcon />
       </div>
-    </Link>
+    </Anchor>
   );
 };
 
