@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 // Imports
+import clsx from "clsx";
 import { debounce } from "@/utils/debounce";
 import { MARQUEE_LOGO_CLASS } from "./data";
 import { BRAND_LOGOS, BRAND_LOGOS_MAP } from "../global/data";
@@ -46,7 +47,14 @@ const Marquee = () => {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="size-full overflow-hidden">
+    <div
+      ref={wrapperRef}
+      data-marquee
+      className={clsx(
+        "size-full overflow-hidden",
+        "opacity-0 invisible" // Initial State
+      )}
+    >
       <div
         className="w-max h-full flex"
         style={{
