@@ -1,11 +1,11 @@
 // Imports
-import Footer from "@/components/footer/footer";
+import WarpBG from "@/components/footer/warp-bg";
 
 const Test = () => {
   return (
-    <>
-      <Footer />
-    </>
+    <div className="w-full h-screen bg-primary overflow-hidden">
+      <WarpBG />
+    </div>
   );
 };
 
