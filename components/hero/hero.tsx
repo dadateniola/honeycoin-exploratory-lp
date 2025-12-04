@@ -33,7 +33,7 @@ const Hero = () => {
 
     revealTL
       .set(header, { autoAlpha: 0, yPercent: 20 })
-      .to(wrapper, { backgroundColor: "#8066cc" })
+      .to(wrapper, { backgroundColor: "#8066cc", delay: 0.5 })
       .to(
         header,
         {

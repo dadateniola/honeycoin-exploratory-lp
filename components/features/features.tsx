@@ -1,36 +1,108 @@
+"use client";
+
+import { useRef } from "react";
+
 // Imports
-import clsx from "clsx";
+import gsap from "gsap";
 import CTA from "../cta/cta";
+import { useGSAP } from "@gsap/react";
 import { FEATURES_DATA } from "./data";
 import { FeaturesCard } from "./components";
 import { CONTENT_CLASS } from "../global/data";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionHeading } from "../global/components";
 
 const Features = () => {
-  return (
-    <section id="features">
-      <div className={clsx(CONTENT_CLASS, "bg-primary")}>
-        <div className="flex justify-center">
-          <div className="w-full max-w-[720px] custom-flex-col gap-4">
-            <SectionHeading title="Everything your business needs, in one platform" />
+  // Refs
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const stickeyBGRef = useRef<HTMLDivElement>(null);
 
-            <div className="flex justify-center">
-              <CTA href="" color="#134E64">
-                See All Features
-              </CTA>
+  // Animations
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const section = sectionRef.current;
+      const header = headerRef.current;
+      const featuresCards = gsap.utils.toArray("[data-features-card]");
+      const featuresCardContents = gsap.utils.toArray(
+        "[data-features-card-content]"
+      );
+      const stickyBG = stickeyBGRef.current;
+      const apiDocsSection = document.getElementById("api-docs");
+
+      const enterTL = gsap.timeline();
+      enterTL
+        .set(header, { autoAlpha: 0, scale: 0.8 })
+        .to(header, { autoAlpha: 1, scale: 1 })
+        .to(featuresCards, { autoAlpha: 1 })
+        .to(featuresCardContents, { autoAlpha: 1 });
+
+      const exitTL = gsap.timeline();
+      exitTL
+        .set(apiDocsSection, { autoAlpha: 0 })
+        .to(stickyBG, { backgroundColor: "#8066cc" })
+        .to(apiDocsSection, { autoAlpha: 1 });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        animation: enterTL,
+      });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "bottom bottom",
+        end: "bottom top",
+        animation: exitTL,
+        scrub: true,
+      });
+    },
+    {
+      scope: sectionRef,
+      dependencies: [],
+    }
+  );
+
+  return (
+    <>
+      <div className="sticky top-0 w-full h-0">
+        <div
+          ref={stickeyBGRef}
+          className="absolute top-0 left-0 right-0 w-full h-screen bg-primary"
+        ></div>
+      </div>
+
+      <section id="features" ref={sectionRef}>
+        <div className={CONTENT_CLASS}>
+          <div className="flex justify-center">
+            <div
+              ref={headerRef}
+              className="w-full max-w-[720px] custom-flex-col gap-4"
+            >
+              <SectionHeading title="Everything your business needs, in one platform" />
+
+              <div className="flex justify-center">
+                <CTA href="" color="#134E64">
+                  See All Features
+                </CTA>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <div className="w-full max-w-[1020px] custom-flex-col gap-10">
+              {FEATURES_DATA.map((feature, index) => (
+                <FeaturesCard key={index} {...feature} />
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <div className="w-full max-w-[1020px] custom-flex-col gap-10">
-            {FEATURES_DATA.map((feature, index) => (
-              <FeaturesCard key={index} {...feature} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+        <div className="h-screen"></div>
+      </section>
+    </>
   );
 };
 

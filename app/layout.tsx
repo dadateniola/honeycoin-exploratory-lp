@@ -7,6 +7,7 @@ import "./globals.css";
 // Imports
 import clsx from "clsx";
 import Navbar from "@/components/navbar/navbar";
+import SmoothScroll from "@/components/smooth-scroll/smooth-scroll";
 
 // Fonts
 const onest = Onest({ subsets: ["latin"] });
@@ -26,8 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={clsx("w-full min-h-screen antialiased", onest.className)}
+        className={clsx(
+          "w-screen min-h-screen overflow-x-hidden antialiased",
+          onest.className
+        )}
       >
+        <SmoothScroll />
         <Navbar className="z-2" />
         <main id="root" className="relative z-1">
           {children}

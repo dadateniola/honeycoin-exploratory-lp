@@ -1,4 +1,5 @@
 // Types
+import clsx from "clsx";
 import { FeaturesCardProps } from "./types";
 
 // Components
@@ -10,12 +11,22 @@ export const FeaturesCard: React.FC<FeaturesCardProps> = ({
   description,
 }) => (
   <div
+    data-features-card
     style={{ backgroundColor: color }}
-    className="relative h-[520px] rounded-2xl overflow-hidden"
+    className={clsx(
+      "relative h-[520px] rounded-2xl overflow-hidden",
+      "opacity-0 invisible" // Initial state
+    )}
   >
     <div className="absolute inset-0"></div>
 
-    <div className="relative size-full py-10 px-[50px] flex justify-start">
+    <div
+      data-features-card-content
+      className={clsx(
+        "relative size-full py-10 px-[50px] flex justify-start",
+        "opacity-0 invisible" // Initial state
+      )}
+    >
       <div className="w-full max-w-[420px] custom-flex-col gap-4">
         {/* Icon */}
         <div className="flex">

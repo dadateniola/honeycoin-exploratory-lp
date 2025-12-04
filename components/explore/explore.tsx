@@ -19,6 +19,7 @@ const Explore = () => {
   // Refs
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   // Animations
   useGSAP(
@@ -31,18 +32,37 @@ const Explore = () => {
       const exploreCardContents = gsap.utils.toArray(
         "[data-explore-card-content]"
       );
+      const featuresSection = document.getElementById("features");
+      const overlay = overlayRef.current;
 
-      const tl = gsap.timeline();
-
-      tl.to("[data-marquee]", { autoAlpha: 1 })
-        .to(header, { autoAlpha: 1 })
+      const enterTL = gsap.timeline();
+      enterTL
+        .set(header, { autoAlpha: 0, scale: 0.8 })
+        .to("[data-marquee]", { autoAlpha: 1 })
+        .to(header, { autoAlpha: 1, scale: 1 })
         .to(exploreCards, { autoAlpha: 1 })
         .to(exploreCardContents, { autoAlpha: 1 });
 
+      const exitTL = gsap.timeline();
+      exitTL
+        .set(featuresSection, { autoAlpha: 0 })
+        .set(overlay, { xPercent: 100 })
+        .to(overlay, { xPercent: 0 })
+        .to(featuresSection, { autoAlpha: 1 });
+
       ScrollTrigger.create({
         trigger: section,
-        start: "top top",
-        animation: tl,
+        start: "top center",
+        animation: enterTL,
+      });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "bottom center",
+        end: `+=${window.innerHeight}`,
+        animation: exitTL,
+        scrub: true,
+        pin: true,
       });
     },
     {
@@ -105,9 +125,12 @@ const Explore = () => {
         </div>
 
         {/* TODO: Come back to this */}
-        <div className="absolute bottom-0 left-0 right-0 h-[140px] bg-primary overflow-hidden">
+        <div
+          ref={overlayRef}
+          className="absolute top-[calc(100%-140px)] left-0 right-0 h-[calc(60vh+140px)] bg-primary overflow-hidden"
+        >
           <div
-            className="absolute inset-0 bg-background"
+            className="absolute top-0 left-0 right-0 h-[140px] bg-background"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, 100% 40px, 70% 40px, 60% 100%, 0 100%)",
