@@ -1,5 +1,8 @@
 // Types
-import type { FooterData } from "./types";
+import type { FooterData, WarpBGItem } from "./types";
+
+// Imports
+import gsap from "gsap";
 
 // Constants
 export const FOOTER_DATA: FooterData[] = [
@@ -35,3 +38,17 @@ export const FOOTER_DATA: FooterData[] = [
     ],
   },
 ];
+
+// Helpers
+export const shuffleArray = <T>(arr: T[]) => {
+  const copy = arr.slice();
+  return gsap.utils.shuffle(copy);
+};
+
+export const createWarpNode = (item: WarpBGItem) => {
+  const node = document.createElement("div");
+  node.setAttribute("data-anim-id", item.id);
+  node.className = item.className;
+  Object.assign(node.style, item.style);
+  return node;
+};

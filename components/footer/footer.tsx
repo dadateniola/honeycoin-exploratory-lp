@@ -1,29 +1,69 @@
-import { forwardRef } from "react";
+"use client";
+
+import { forwardRef, useRef, useState } from "react";
 
 // Images
 import { RvysionLogo } from "../svg/svg";
 
 // Imports
 import clsx from "clsx";
+import gsap from "gsap";
 import CTA from "../cta/cta";
 import WarpBG from "./warp-bg";
 import { FOOTER_DATA } from "./data";
+import { useGSAP } from "@gsap/react";
 import { FooterCard } from "./components";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SECTION_HEADING_CLASS } from "../global/data";
 
 const Footer = forwardRef<HTMLElement>((_, ref) => {
+  // States
+  const [startWarpAnimation, setStartWarpAnimation] = useState(false);
+
+  // Refs
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Animations
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const footerRef = ref as React.RefObject<HTMLElement>;
+    if (!footerRef.current) return;
+
+    const content = contentRef.current;
+
+    const enterTL = gsap.timeline();
+
+    enterTL
+      .set(content, { autoAlpha: 0, scale: 0.9 })
+      .to(content, { autoAlpha: 1, scale: 1, duration: 1 })
+      .call(() => setStartWarpAnimation(true));
+
+    ScrollTrigger.create({
+      trigger: footerRef.current,
+      start: "top center",
+      animation: enterTL,
+    });
+  }, []);
+
   return (
     <section id="footer" ref={ref}>
       <div className="relative bg-primary overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          {/* <WarpBG /> */}
+          <WarpBG startAnimation={startWarpAnimation} />
         </div>
 
         <div className="relative h-[1300px] p-10">
           <div className="size-full custom-flex-col justify-between gap-20">
             <div className="custom-flex-col gap-20">
               <div></div>
-              <div className="flex gap-10">
+              <div
+                ref={contentRef}
+                className={clsx(
+                  "flex gap-10",
+                  "opacity-0 invisible" // Initial state
+                )}
+              >
                 {/* Content */}
                 <div className="flex-1 min-w-0 custom-flex-col gap-6">
                   <div className="custom-flex-col gap-4">
