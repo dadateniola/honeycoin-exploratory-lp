@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 
+// Images
+import { ExploreCurve } from "../svg/svg";
+
 // Imports
 import clsx from "clsx";
 import gsap from "gsap";
@@ -124,18 +127,12 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* TODO: Come back to this */}
+        {/* TODO: Possible svg height issue on large screens  */}
         <div
           ref={overlayRef}
-          className="absolute top-[calc(100%-140px)] left-0 right-0 h-[calc(60vh+140px)] bg-primary overflow-hidden"
+          className="absolute top-full left-0 right-0 h-[50vh] bg-primary"
         >
-          <div
-            className="absolute top-0 left-0 right-0 h-[140px] bg-background"
-            style={{
-              clipPath:
-                "polygon(0 0, 100% 0, 100% 40px, 70% 40px, 60% 100%, 0 100%)",
-            }}
-          ></div>
+          <ExploreCurve className="absolute top-0 left-0 right-0 -translate-y-[98%] w-full h-auto" />
         </div>
       </div>
     </section>
