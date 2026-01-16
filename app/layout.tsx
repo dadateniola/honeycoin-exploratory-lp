@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Onest } from "next/font/google";
 
 // CSS
 import "./globals.css";
@@ -7,10 +6,10 @@ import "./globals.css";
 // Imports
 import clsx from "clsx";
 import Navbar from "@/components/navbar/navbar";
+import { onest } from "@/components/global/data";
 import SmoothScroll from "@/components/smooth-scroll/smooth-scroll";
 
 // Fonts
-const onest = Onest({ subsets: ["latin"] });
 
 // Metadata
 export const metadata: Metadata = {

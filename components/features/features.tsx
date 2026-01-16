@@ -84,7 +84,7 @@ const Features = () => {
               <SectionHeading title="Everything your business needs, in one platform" />
 
               <div className="flex justify-center">
-                <CTA href="" color="#134E64">
+                <CTA href="">
                   See All Features
                 </CTA>
               </div>

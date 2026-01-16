@@ -108,7 +108,7 @@ const Hero = () => {
 
             {/* Actions */}
             <div className="flex justify-center gap-5">
-              <CTA href="" color="#8066CC">
+              <CTA href="">
                 GET STARTED
               </CTA>
 

@@ -62,7 +62,7 @@ const ApiDocs = () => {
             />
 
             <div className="flex justify-center">
-              <CTA href="" color="#8066CC">
+              <CTA href="">
                 View API Docs
               </CTA>
             </div>

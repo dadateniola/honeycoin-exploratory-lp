@@ -14,7 +14,7 @@ import gsap from "gsap";
 import clsx from "clsx";
 import { isExternalLink } from "@/utils/isExternalLink";
 
-const CTA: React.FC<CTAProps> = ({ href, color = "black", children }) => {
+const CTA: React.FC<CTAProps> = ({ href, color = "#134E64", children }) => {
   // Refs
   const bgRef = useRef<HTMLDivElement>(null);
   const linkRef = useRef<HTMLAnchorElement>(null);

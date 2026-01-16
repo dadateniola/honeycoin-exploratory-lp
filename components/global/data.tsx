@@ -1,3 +1,5 @@
+import { Fraunces, Onest } from "next/font/google";
+
 // Types
 import type { BrandLogo } from "./types";
 import type { SVGProps } from "../svg/types";
@@ -13,6 +15,10 @@ import {
   HoneyCoin,
   LateralFrontiers,
 } from "../svg/brands";
+
+// Fonts
+export const onest = Onest({ subsets: ["latin"] });
+export const fraunces = Fraunces({ subsets: ["latin"] });
 
 // Constants
 export const CONTENT_CLASS = "py-[140px] px-10 custom-flex-col gap-[100px]";

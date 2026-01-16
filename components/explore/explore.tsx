@@ -107,7 +107,7 @@ const Explore = () => {
               />
 
               <div className="flex justify-center">
-                <CTA href="" color="#8066CC">
+                <CTA href="">
                   Explore FX & Liquidity
                 </CTA>
               </div>
