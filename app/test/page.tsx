@@ -10,6 +10,7 @@ import {
   useRive,
   useViewModel,
   useViewModelInstance,
+  useViewModelInstanceBoolean,
 } from "@rive-app/react-canvas";
 
 const Test = () => {
@@ -17,7 +18,7 @@ const Test = () => {
   const { rive, RiveComponent } = useRive({
     // src: "/rive/test.riv",
     src: "/rive/honeycoin.riv",
-    artboard: "Bento 10",
+    artboard: "Bento 3",
     stateMachines: "State Machine 1",
     autoplay: false,
     layout: new Layout({
@@ -28,6 +29,7 @@ const Test = () => {
 
   const viewModel = useViewModel(rive, { name: "View Model 1" });
   const vmi = useViewModelInstance(viewModel, { rive });
+  const { value, setValue } = useViewModelInstanceBoolean("isHovered", vmi);
 
   // Refs
   const riveCanvasRef = useRef<HTMLDivElement>(null);
@@ -38,7 +40,7 @@ const Test = () => {
         ref={riveCanvasRef}
         onMouseEnter={() => {}}
         onMouseLeave={() => {}}
-        className="h-full max-w-[80vw] max-h-[80vh] aspect-[1.4] bg-black/10 rounded-lg overflow-hidden"
+        className="h-full max-w-[80vw] max-h-[80vh] aspect-[0.7] bg-black/10 rounded-lg overflow-hidden"
       >
         <RiveComponent />
       </div>
@@ -60,10 +62,10 @@ const Test = () => {
         </button>
         <button
           onClick={() => {
-            rive?.stop();
+            setValue(!value);
           }}
         >
-          Stop
+          {value ? "Set isHovered: false" : "Set isHovered: true"}
         </button>
       </div>
     </div>
