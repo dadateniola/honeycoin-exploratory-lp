@@ -3,13 +3,9 @@
 import React, { useEffect, useRef } from "react";
 
 // Types
-import type { ExploreData } from "./explore/types";
+import type { RiveCardControllerProps } from "./types";
 
 // Imports
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ExploreCard } from "./explore/components";
-
 import {
   Fit,
   Layout,
@@ -20,7 +16,16 @@ import {
   useViewModelInstanceBoolean,
 } from "@rive-app/react-canvas";
 
-const CardControl: React.FC<ExploreData> = (data) => {
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ExploreCard } from "../explore/components";
+import { ApiDocsCard } from "../api-docs/components";
+import { FeaturesCard } from "../features/components";
+
+const RiveCardController: React.FC<RiveCardControllerProps> = ({
+  type,
+  data,
+}) => {
   // Hooks
   const { rive, RiveComponent } = useRive({
     src: "/rive/honeycoin.riv",
@@ -53,11 +58,8 @@ const CardControl: React.FC<ExploreData> = (data) => {
       });
 
       tl.to(cardRef.current, { autoAlpha: 1 })
-        .to("[data-explore-card-content]", { autoAlpha: 1 })
-        .call(() => {
-          console.log("Playing artboard ", data.artboard);
-          rive?.play();
-        });
+        .to(`[data-${type}-card-content]`, { autoAlpha: 1 })
+        .call(() => rive.play());
     },
     {
       scope: cardRef,
@@ -90,11 +92,29 @@ const CardControl: React.FC<ExploreData> = (data) => {
     };
   }, [rive, vmib]);
 
-  return (
-    <ExploreCard ref={cardRef} {...data}>
-      <RiveComponent />
-    </ExploreCard>
-  );
+  // Render
+  switch (type) {
+    case "explore":
+      return (
+        <ExploreCard ref={cardRef} {...data}>
+          <RiveComponent />
+        </ExploreCard>
+      );
+    case "features":
+      return (
+        <FeaturesCard ref={cardRef} {...data}>
+          <RiveComponent />
+        </FeaturesCard>
+      );
+    case "api-docs":
+      return (
+        <ApiDocsCard ref={cardRef} {...data}>
+          <RiveComponent />
+        </ApiDocsCard>
+      );
+    default:
+      return null;
+  }
 };
 
-export default CardControl;
+export default RiveCardController;

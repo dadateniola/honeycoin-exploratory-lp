@@ -13,11 +13,10 @@ import Marquee from "./marquee";
 import { chunk } from "@/utils/chunk";
 import { EXPLORE_DATA } from "./data";
 import { useGSAP } from "@gsap/react";
-import CardControl from "../card-control";
-// import { ExploreCard } from "./components";
 import { CONTENT_CLASS } from "../global/data";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionHeading } from "../global/components";
+import RiveCardController from "../rive-card-controller/rive-card-controller";
 
 const Explore = () => {
   // Refs
@@ -32,10 +31,6 @@ const Explore = () => {
 
       const section = sectionRef.current;
       const header = headerRef.current;
-      // const exploreCards = gsap.utils.toArray("[data-explore-card]");
-      // const exploreCardContents = gsap.utils.toArray(
-      //   "[data-explore-card-content]"
-      // );
       const featuresSection = document.getElementById("features");
       const overlay = overlayRef.current;
 
@@ -44,8 +39,6 @@ const Explore = () => {
         .set(header, { autoAlpha: 0, scale: 0.8 })
         .to("[data-marquee]", { autoAlpha: 1 })
         .to(header, { autoAlpha: 1, scale: 1 });
-      // .to(exploreCards, { autoAlpha: 1 })
-      // .to(exploreCardContents, { autoAlpha: 1 });
 
       const exitTL = gsap.timeline();
       exitTL
@@ -118,7 +111,7 @@ const Explore = () => {
               {dataPairs.map((pair, index) => (
                 <div key={index} className="flex gap-10">
                   {pair.map((item, idx) => (
-                    <CardControl key={idx} {...item} />
+                    <RiveCardController key={idx} type="explore" data={item} />
                   ))}
                 </div>
               ))}

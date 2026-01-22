@@ -19,7 +19,9 @@ export const ExploreCard = React.forwardRef<HTMLDivElement, ExploreCardProps>(
         "opacity-0 invisible", // Initial state
       )}
     >
-      <div className="absolute inset-0 size-full overflow-hidden">{children}</div>
+      <div className="absolute inset-0 size-full overflow-hidden">
+        {children}
+      </div>
 
       <div
         data-explore-card-content

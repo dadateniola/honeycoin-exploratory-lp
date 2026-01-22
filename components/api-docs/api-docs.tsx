@@ -7,10 +7,10 @@ import gsap from "gsap";
 import CTA from "../cta/cta";
 import { useGSAP } from "@gsap/react";
 import { API_DOCS_DATA } from "./data";
-import { ApiDocsCard } from "./components";
 import { CONTENT_CLASS } from "../global/data";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionHeading } from "../global/components";
+import RiveCardController from "../rive-card-controller/rive-card-controller";
 
 const ApiDocs = () => {
   // Refs
@@ -24,17 +24,11 @@ const ApiDocs = () => {
 
       const section = sectionRef.current;
       const header = headerRef.current;
-      const apiDocsCards = gsap.utils.toArray("[data-api-docs-card]");
-      const apiDocsCardContents = gsap.utils.toArray(
-        "[data-api-docs-card-content]"
-      );
 
       const enterTL = gsap.timeline();
       enterTL
         .set(header, { autoAlpha: 0, scale: 0.8 })
-        .to(header, { autoAlpha: 1, scale: 1 })
-        .to(apiDocsCards, { autoAlpha: 1 })
-        .to(apiDocsCardContents, { autoAlpha: 1 });
+        .to(header, { autoAlpha: 1, scale: 1 });
 
       ScrollTrigger.create({
         trigger: section,
@@ -45,7 +39,7 @@ const ApiDocs = () => {
     {
       scope: sectionRef,
       dependencies: [],
-    }
+    },
   );
 
   return (
@@ -62,9 +56,7 @@ const ApiDocs = () => {
             />
 
             <div className="flex justify-center">
-              <CTA href="">
-                View API Docs
-              </CTA>
+              <CTA href="">View API Docs</CTA>
             </div>
           </div>
         </div>
@@ -72,7 +64,7 @@ const ApiDocs = () => {
         <div className="flex justify-center">
           <div className="w-full max-w-[1050px] flex gap-2.5">
             {API_DOCS_DATA.map((doc, index) => (
-              <ApiDocsCard key={index} {...doc} />
+              <RiveCardController key={index} type="api-docs" data={doc} />
             ))}
           </div>
         </div>

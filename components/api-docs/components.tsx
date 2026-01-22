@@ -1,3 +1,5 @@
+import React from "react";
+
 // Types
 import type { ApiDocsCardProps } from "./types";
 
@@ -5,31 +7,35 @@ import type { ApiDocsCardProps } from "./types";
 import { clsx } from "clsx";
 
 // Components
-export const ApiDocsCard: React.FC<ApiDocsCardProps> = ({
-  title,
-  description,
-}) => (
-  <div
-    data-api-docs-card
-    className={clsx(
-      "relative flex-1 min-w-0 h-[600px] bg-api-docs-card-bg rounded-xl overflow-hidden",
-      "opacity-0 invisible" // Initial State
-    )}
-  >
-    <div className="absolute inset-0"></div>
-
+export const ApiDocsCard = React.forwardRef<HTMLDivElement, ApiDocsCardProps>(
+  ({ title, children, description }, ref) => (
     <div
-      data-api-docs-card-content
+      ref={ref}
+      data-api-docs-card
       className={clsx(
-        "relative size-full py-6 px-5 custom-flex-col justify-end gap-3",
-        "opacity-0 invisible" // Initial State
+        "relative flex-1 min-w-0 h-[600px] bg-api-docs-card-bg rounded-xl overflow-hidden",
+        "opacity-0 invisible", // Initial State
       )}
     >
-      <h2 className="text-white/90 text-2xl -tracking-[0.24px] leading-[100%]">
-        {title}
-      </h2>
+      <div className="absolute inset-0 size-full overflow-hidden">
+        {children}
+      </div>
 
-      <p className="-tracking-[0.16px] leading-[135%]">{description}</p>
+      <div
+        data-api-docs-card-content
+        className={clsx(
+          "relative size-full py-6 px-5 custom-flex-col justify-end gap-3",
+          "opacity-0 invisible", // Initial State
+        )}
+      >
+        <h2 className="text-white/90 text-2xl -tracking-[0.24px] leading-[100%]">
+          {title}
+        </h2>
+
+        <p className="-tracking-[0.16px] leading-[135%]">{description}</p>
+      </div>
     </div>
-  </div>
+  ),
 );
+
+ApiDocsCard.displayName = "ApiDocsCard";
