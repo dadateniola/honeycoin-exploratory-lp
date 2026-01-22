@@ -1,8 +1,11 @@
 export type ExploreData = {
   color: string;
   title: string;
-  layout: "compact" | "stretch";
+  artboard: string;
   description: string;
+  layout: "compact" | "stretch";
 };
 
-export type ExploreCardProps = ExploreData;
+export interface ExploreCardProps extends ExploreData {
+  children?: React.ReactNode;
+}

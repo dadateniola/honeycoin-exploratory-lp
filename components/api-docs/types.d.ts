@@ -1,6 +1,9 @@
 export type ApiDocsData = {
   title: string;
+  artboard: string;
   description: string;
 };
 
-export type ApiDocsCardProps = ApiDocsData;
+export interface ApiDocsCardProps extends ApiDocsData {
+  children?: React.ReactNode;
+}

@@ -7,16 +7,16 @@ import gsap from "gsap";
 import CTA from "../cta/cta";
 import { useGSAP } from "@gsap/react";
 import { FEATURES_DATA } from "./data";
-import { FeaturesCard } from "./components";
 import { CONTENT_CLASS } from "../global/data";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionHeading } from "../global/components";
+import RiveCardController from "../rive-card-controller/rive-card-controller";
 
 const Features = () => {
   // Refs
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const stickeyBGRef = useRef<HTMLDivElement>(null);
+  const stickyBGRef = useRef<HTMLDivElement>(null);
 
   // Animations
   useGSAP(
@@ -25,19 +25,13 @@ const Features = () => {
 
       const section = sectionRef.current;
       const header = headerRef.current;
-      const featuresCards = gsap.utils.toArray("[data-features-card]");
-      const featuresCardContents = gsap.utils.toArray(
-        "[data-features-card-content]"
-      );
-      const stickyBG = stickeyBGRef.current;
+      const stickyBG = stickyBGRef.current;
       const apiDocsSection = document.getElementById("api-docs");
 
       const enterTL = gsap.timeline();
       enterTL
         .set(header, { autoAlpha: 0, scale: 0.8 })
-        .to(header, { autoAlpha: 1, scale: 1 })
-        .to(featuresCards, { autoAlpha: 1 })
-        .to(featuresCardContents, { autoAlpha: 1 });
+        .to(header, { autoAlpha: 1, scale: 1 });
 
       const exitTL = gsap.timeline();
       exitTL
@@ -62,14 +56,14 @@ const Features = () => {
     {
       scope: sectionRef,
       dependencies: [],
-    }
+    },
   );
 
   return (
     <>
       <div className="sticky top-0 w-full h-0">
         <div
-          ref={stickeyBGRef}
+          ref={stickyBGRef}
           className="absolute top-0 left-0 right-0 w-full h-screen bg-primary"
         ></div>
       </div>
@@ -84,9 +78,7 @@ const Features = () => {
               <SectionHeading title="Everything your business needs, in one platform" />
 
               <div className="flex justify-center">
-                <CTA href="">
-                  See All Features
-                </CTA>
+                <CTA href="">See All Features</CTA>
               </div>
             </div>
           </div>
@@ -94,7 +86,11 @@ const Features = () => {
           <div className="flex justify-center">
             <div className="w-full max-w-[1020px] custom-flex-col gap-10">
               {FEATURES_DATA.map((feature, index) => (
-                <FeaturesCard key={index} {...feature} />
+                <RiveCardController
+                  key={index}
+                  type="features"
+                  data={feature}
+                />
               ))}
             </div>
           </div>
