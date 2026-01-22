@@ -29,7 +29,7 @@ export const EXPLORE_DATA: ExploreData[] = [
     layout: "stretch",
     color: "#E4F9E0",
     title: "Payouts that scale with your business.",
-    artboard: "Bento 2",
+    artboard: "Bento 2.2",
     description:
       "From payroll to supplier payments, HoneyCoin handles bulk processing in seconds. Say goodbye to delays, bottlenecks, and endless bank queues.",
   },
