@@ -106,7 +106,7 @@ const CTA: React.FC<CTAProps> = ({ href, color = "#134E64", children }) => {
       <div
         ref={contentRef}
         style={{ color }}
-        className="relative flex items-center gap-3"
+        className="w-full relative flex items-center justify-between gap-3"
       >
         <p className="font-semibold -tracking-[0.16px] uppercase whitespace-nowrap">
           {children}

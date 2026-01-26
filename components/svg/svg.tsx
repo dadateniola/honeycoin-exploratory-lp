@@ -212,6 +212,7 @@ export const ExploreCurve: React.FC<SVGProps> = ({ className }) => (
     height="100"
     viewBox="0 0 1440 100"
     fill="none"
+    preserveAspectRatio="xMaxYMax meet"
     className={className}
   >
     <path

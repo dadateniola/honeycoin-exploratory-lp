@@ -107,9 +107,12 @@ const Explore = () => {
           </div>
 
           <div className="flex justify-center">
-            <div className="w-full max-w-[1340px] custom-flex-col gap-10">
+            <div className="w-full max-w-[1340px] custom-flex-col gap-6 xl:gap-10">
               {dataPairs.map((pair, index) => (
-                <div key={index} className="flex gap-10">
+                <div
+                  key={index}
+                  className="flex flex-col lg:flex-row gap-6 xl:gap-10"
+                >
                   {pair.map((item, idx) => (
                     <RiveCardController key={idx} type="explore" data={item} />
                   ))}
@@ -119,12 +122,11 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* TODO: Possible svg height issue on large screens  */}
-        <div
-          ref={overlayRef}
-          className="absolute top-full left-0 right-0 h-[50vh] bg-primary"
-        >
-          <ExploreCurve className="absolute top-0 left-0 right-0 -translate-y-[98%] w-full h-auto" />
+        <div className="absolute top-[calc(100%-100px)] left-0 right-0 h-[calc(50vh+100px)] overflow-hidden">
+          <div ref={overlayRef} className="size-full custom-flex-col">
+            <ExploreCurve className="w-full h-[100px] translate-y-px" />
+            <div className="flex-1 min-h-0 bg-primary"></div>
+          </div>
         </div>
       </div>
     </section>

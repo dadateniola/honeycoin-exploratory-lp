@@ -62,7 +62,7 @@ const ApiDocs = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="w-full max-w-[1050px] flex gap-2.5">
+          <div className="w-full max-w-[1050px] flex flex-col md:flex-row gap-2.5">
             {API_DOCS_DATA.map((doc, index) => (
               <RiveCardController key={index} type="api-docs" data={doc} />
             ))}

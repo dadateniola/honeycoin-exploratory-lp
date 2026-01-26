@@ -42,7 +42,7 @@ export const FeaturesCard = React.forwardRef<HTMLDivElement, FeaturesCardProps>(
 
           <h2
             style={{ color: textColor }}
-            className="text-5xl font-recoleta -tracking-[0.48px] leading-[120%]"
+            className="text-[40px] lg:text-5xl font-recoleta -tracking-[0.48px] leading-[120%]"
           >
             {title}
           </h2>

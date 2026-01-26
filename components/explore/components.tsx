@@ -14,12 +14,18 @@ export const ExploreCard = React.forwardRef<HTMLDivElement, ExploreCardProps>(
       data-explore-card
       style={{ backgroundColor: color }}
       className={clsx(
-        "relative flex-1 min-w-0 h-[540px] rounded-[10px] overflow-hidden",
-        layout === "compact" && "max-w-[400px]",
+        "relative lg:flex-1 min-w-0 h-[540px] rounded-[10px] overflow-hidden",
+        layout === "compact" && "lg:max-w-[400px]",
         "opacity-0 invisible", // Initial state
       )}
     >
-      <div className="absolute inset-0 size-full overflow-hidden">
+      <div
+        className={clsx("absolute size-full overflow-hidden", {
+          "bottom-0 right-0 w-full xs:w-[60%] xs:min-w-[450px]":
+            layout === "compact",
+          "inset-0": layout === "stretch",
+        })}
+      >
         {children}
       </div>
 

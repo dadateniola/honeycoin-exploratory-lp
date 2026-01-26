@@ -13,7 +13,7 @@ export const ApiDocsCard = React.forwardRef<HTMLDivElement, ApiDocsCardProps>(
       ref={ref}
       data-api-docs-card
       className={clsx(
-        "relative flex-1 min-w-0 h-[600px] bg-api-docs-card-bg rounded-xl overflow-hidden",
+        "relative md:flex-1 min-w-0 h-[600px] bg-api-docs-card-bg rounded-xl overflow-hidden",
         "opacity-0 invisible", // Initial State
       )}
     >
