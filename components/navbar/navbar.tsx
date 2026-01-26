@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     <nav
       ref={navRef}
       className={clsx(
-        "absolute top-0 left-0 right-0 w-full h-navbar-height px-10 flex items-center justify-between",
+        "absolute top-0 left-0 right-0 w-full h-navbar-height px-6 md:px-10 flex items-center justify-between",
         "opacity-0 invisible", // Initial state
         className
       )}

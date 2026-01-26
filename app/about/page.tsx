@@ -68,13 +68,13 @@ const About = () => {
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
               <div
-                className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-[110%] bg-primary"
+                className="absolute top-1/2 right-0 -translate-y-1/2 w-[110%] xs:w-[80%] md:w-1/2 h-[110%] bg-primary"
                 style={{ clipPath: "ellipse(100% 100% at 100% 100%)" }}
               ></div>
             </div>
 
             {/* Content */}
-            <div className="relative p-10 pt-[200px] custom-flex-col gap-[60px]">
+            <div className="relative p-6 pt-[200px] md:p-10 md:pt-[200px] custom-flex-col gap-[60px]">
               <div className="flex gap-8">
                 <div className="flex-1 min-w-0">
                   <div
@@ -84,7 +84,7 @@ const About = () => {
                     <h1
                       className={clsx(
                         "w-full max-w-[477px]",
-                        SECTION_HEADING_CLASS
+                        SECTION_HEADING_CLASS,
                       )}
                     >
                       About this exploration
@@ -104,7 +104,7 @@ const About = () => {
                       product feel more intuitive, more human, and more premium.
                     </p>
 
-                    <div className="flex gap-5">
+                    <div className="flex flex-col sm:flex-row gap-5">
                       <CTA href="https://www.rvysion.co/works">
                         VIEW RVYSION PORTFOLIO
                       </CTA>
@@ -116,7 +116,7 @@ const About = () => {
                   </div>
                 </div>
 
-                <div className="pr-[50px] flex items-end">
+                <div className="max-lg:hidden pr-[50px] flex items-end">
                   <AboutArrow />
                 </div>
               </div>
@@ -131,7 +131,7 @@ const About = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3">
                   {typedEntries(BRAND_LOGOS_MAP).map(([key, Logo], index) => (
                     <div key={index} className="size-full overflow-hidden">
                       <div

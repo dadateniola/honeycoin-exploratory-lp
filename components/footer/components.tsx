@@ -8,7 +8,7 @@ import { ArrowRightUpIcon } from "../svg/svg";
 
 // Components
 export const FooterCard: React.FC<FooterCardProps> = ({ links, title }) => (
-  <div className="w-full min-h-[280px] p-5 custom-flex-col gap-5 justify-between bg-white/10 rounded-xl overflow-hidden backdrop-blur-sm">
+  <div className="w-full xs:min-h-[280px] p-5 custom-flex-col gap-5 justify-between bg-white/10 rounded-xl overflow-hidden backdrop-blur-sm">
     <p className="-tracking-[0.16px] leading-[135%] uppercase">{title}</p>
 
     <div className="custom-flex-col gap-5">

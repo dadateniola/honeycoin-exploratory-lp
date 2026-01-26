@@ -9,8 +9,6 @@ import Navbar from "@/components/navbar/navbar";
 import { onest } from "@/components/global/data";
 import SmoothScroll from "@/components/smooth-scroll/smooth-scroll";
 
-// Fonts
-
 // Metadata
 export const metadata: Metadata = {
   title: "HoneyCoin: A world without borders.",
@@ -25,12 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={clsx(
-          "w-screen min-h-screen overflow-x-hidden antialiased",
-          onest.className
-        )}
-      >
+      <body className={clsx("antialiased", onest.className)}>
         <SmoothScroll />
         <Navbar className="z-2" />
         <main id="root" className="relative z-1">

@@ -15,7 +15,7 @@ const AltCTA: React.FC<AltCTAProps> = ({ href, children }) => {
   return (
     <Anchor
       href={href}
-      className="h-[52px] pl-5 pr-4 flex items-center gap-3 bg-white/10 rounded-lg"
+      className="h-[52px] pl-5 pr-4 flex items-center justify-between gap-3 bg-white/10 rounded-lg"
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       <p className="font-semibold underline -tracking-[0.16px] whitespace-nowrap">

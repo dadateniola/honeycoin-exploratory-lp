@@ -27,6 +27,9 @@
 
   /* Spacing */
   --spacing-navbar-height: 80px;
+
+  /* Breakpoints */
+  --breakpoint-xs: 550px;
 }
 
 /* Utilities */

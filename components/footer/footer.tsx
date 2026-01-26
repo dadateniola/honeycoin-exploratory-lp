@@ -15,8 +15,21 @@ import { useGSAP } from "@gsap/react";
 import { FooterCard } from "./components";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SECTION_HEADING_CLASS } from "../global/data";
+import { Alignment, Fit, Layout, useRive } from "@rive-app/react-canvas";
 
 const Footer = forwardRef<HTMLElement>((_, ref) => {
+  // Hooks
+  const { rive, RiveComponent } = useRive({
+    src: "/rive/honeycoin.riv",
+    artboard: "Footer",
+    stateMachines: "State Machine 1",
+    autoplay: false,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.BottomCenter,
+    }),
+  });
+
   // States
   const [startWarpAnimation, setStartWarpAnimation] = useState(false);
 
@@ -24,27 +37,37 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Animations
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(
+    () => {
+      if (!rive) return;
 
-    const footerRef = ref as React.RefObject<HTMLElement>;
-    if (!footerRef.current) return;
+      gsap.registerPlugin(ScrollTrigger);
 
-    const content = contentRef.current;
+      const footerRef = ref as React.RefObject<HTMLElement>;
+      if (!footerRef.current) return;
 
-    const enterTL = gsap.timeline();
+      const content = contentRef.current;
 
-    enterTL
-      .set(content, { autoAlpha: 0, scale: 0.9 })
-      .to(content, { autoAlpha: 1, scale: 1, duration: 1 })
-      .call(() => setStartWarpAnimation(true));
+      const enterTL = gsap.timeline();
 
-    ScrollTrigger.create({
-      trigger: footerRef.current,
-      start: "top center",
-      animation: enterTL,
-    });
-  }, []);
+      enterTL
+        .set(content, { autoAlpha: 0, scale: 0.9 })
+        .to(content, { autoAlpha: 1, scale: 1, duration: 1 })
+        .call(() => {
+          setStartWarpAnimation(true);
+          rive.play();
+        });
+
+      ScrollTrigger.create({
+        trigger: footerRef.current,
+        start: "top center",
+        animation: enterTL,
+      });
+    },
+    {
+      dependencies: [rive],
+    },
+  );
 
   return (
     <section id="footer" ref={ref}>
@@ -53,15 +76,19 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
           <WarpBG startAnimation={startWarpAnimation} />
         </div>
 
-        <div className="relative h-[1300px] p-10">
-          <div className="size-full custom-flex-col justify-between gap-20">
+        <div className="absolute inset-0 overflow-hidden">
+          <RiveComponent />
+        </div>
+
+        <div className="relative min-h-[1000px] p-6 md:p-10 custom-flex-col">
+          <div className="flex-1 min-h-0 custom-flex-col justify-between gap-20">
             <div className="custom-flex-col gap-20">
               <div></div>
               <div
                 ref={contentRef}
                 className={clsx(
-                  "flex gap-10",
-                  "opacity-0 invisible" // Initial state
+                  "flex flex-col xl:flex-row gap-10",
+                  "opacity-0 invisible", // Initial state
                 )}
               >
                 {/* Content */}
@@ -81,14 +108,12 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
                   </p>
 
                   <div className="flex">
-                    <CTA href="">
-                      PROJECT DETAILS
-                    </CTA>
+                    <CTA href="">PROJECT DETAILS</CTA>
                   </div>
                 </div>
 
                 {/* Links */}
-                <div className="flex-1 min-w-0 grid grid-cols-2 gap-3">
+                <div className="flex-1 min-w-0 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-3">
                   {FOOTER_DATA.map((data, index) => (
                     <FooterCard key={index} {...data} />
                   ))}
@@ -99,7 +124,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
             <div
               className={clsx(
                 "flex justify-between gap-10",
-                "font-medium -tracking-[0.16px] leading-[135%]"
+                "font-medium -tracking-[0.16px] leading-[135%]",
               )}
             >
               <p>© Rvysion. 2025. All rights reserved.</p>
