@@ -128,7 +128,6 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
               )}
             >
               <p>© Rvysion. 2025. All rights reserved.</p>
-              <p>Privacy Policy • Terms of Service • Security</p>
             </div>
           </div>
         </div>
