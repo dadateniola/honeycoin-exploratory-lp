@@ -6,10 +6,6 @@ export interface CTAProps {
         onClick?: () => void;
       };
   color?: "#8066CC" | "#134E64" | (string & {});
-  children: React.ReactNode;
-}
-
-export interface AltCTAProps {
-  href: string;
+  variant?: "default" | "secondary";
   children: React.ReactNode;
 }

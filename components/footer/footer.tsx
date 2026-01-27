@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { forwardRef, useRef, useState } from "react";
 
 // Images
-import { RvysionLogo } from "../svg/svg";
+import { AetherLogo } from "../svg/svg";
 
 // Imports
 import clsx from "clsx";
@@ -95,7 +96,16 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
                 <div className="flex-1 min-w-0 custom-flex-col gap-6">
                   <div className="custom-flex-col gap-4">
                     <div className="flex">
-                      <RvysionLogo />
+                      <Link href="/" className="flex items-center gap-2.5">
+                        <AetherLogo size={32} />
+                        <p
+                          className={
+                            "text-2xl font-fraunces font-semibold -tracking-[0.24px] leading-[100%]"
+                          }
+                        >
+                          AETHER
+                        </p>
+                      </Link>
                     </div>
                     <h3 className={SECTION_HEADING_CLASS}>
                       Everything works better when money flows.

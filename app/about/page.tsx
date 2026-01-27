@@ -16,7 +16,6 @@ import {
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import AltCTA from "@/components/cta/alt-cta";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import { typedEntries } from "@/utils/typedEntries";
 import { BRAND_LOGO_CLASS } from "@/components/about/data";
@@ -108,10 +107,12 @@ const About = () => {
                       <CTA action={{ href: "https://www.rvysion.co/works" }}>
                         VIEW RVYSION PORTFOLIO
                       </CTA>
-
-                      <AltCTA href="https://honeycoin.app/">
+                      <CTA
+                        variant="secondary"
+                        action={{ href: "https://honeycoin.app/" }}
+                      >
                         VISIT HONEYCOIN WEBSITE
-                      </AltCTA>
+                      </CTA>
                     </div>
                   </div>
                 </div>
