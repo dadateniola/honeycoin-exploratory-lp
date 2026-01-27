@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 // Types
 import type { CTAProps } from "./types";
@@ -14,7 +14,21 @@ import gsap from "gsap";
 import clsx from "clsx";
 import { isExternalLink } from "@/utils/isExternalLink";
 
-const CTA: React.FC<CTAProps> = ({ action, color = "#134E64", children }) => {
+const CTA: React.FC<CTAProps> = ({
+  action,
+  color = "#134E64",
+  variant = "default",
+  children,
+}) => {
+  // Variables
+  const textColor = useMemo(
+    () => ({
+      default: variant === "default" ? color : "white",
+      hovered: variant === "default" ? "white" : color,
+    }),
+    [color, variant],
+  );
+
   // Refs
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -45,7 +59,11 @@ const CTA: React.FC<CTAProps> = ({ action, color = "#134E64", children }) => {
           skewX: 45,
           scaleX: isEnter ? 1 : 0,
         })
-        .to(content, { color: isEnter ? "#ffffff" : color }, "<");
+        .to(
+          content,
+          { color: isEnter ? textColor.hovered : textColor.default },
+          "<",
+        );
 
       tl.call(() => {
         current = "idle";
@@ -73,7 +91,7 @@ const CTA: React.FC<CTAProps> = ({ action, color = "#134E64", children }) => {
       trigger.removeEventListener("mouseenter", onMouseEnter);
       trigger.removeEventListener("mouseleave", onMouseLeave);
     };
-  }, [color]);
+  }, [color, textColor]);
 
   // Render
   const isLink = "href" in action;
@@ -85,33 +103,50 @@ const CTA: React.FC<CTAProps> = ({ action, color = "#134E64", children }) => {
     ref: triggerRef as any,
     className:
       "relative h-[52px] pl-5 pr-4 flex items-center rounded-lg overflow-hidden",
-    style: {
-      clipPath:
-        "polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%)",
-    },
+    ...(variant === "default"
+      ? {
+          style: {
+            clipPath:
+              "polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%)",
+          },
+        }
+      : {}),
   };
 
   const content = (
     <>
       {/* Background */}
-      <div className="absolute inset-0 bg-foreground origin-center scale-140 pointer-events-none">
+      <div
+        className={clsx(
+          "absolute inset-0 origin-center scale-140 pointer-events-none",
+          {
+            "bg-foreground": variant === "default",
+            "bg-white/10": variant === "secondary",
+          },
+        )}
+      >
         <div
           ref={bgRef}
           className={clsx(
             "size-full",
             "opacity-0 invisible", // Initial state
           )}
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: variant === "default" ? color : "white" }}
         ></div>
       </div>
 
       {/* Content */}
       <div
         ref={contentRef}
-        style={{ color }}
+        style={{ color: textColor.default }}
         className="w-full relative flex items-center justify-between gap-3"
       >
-        <p className="text-sm xs:text-base font-semibold -tracking-[0.16px] uppercase whitespace-nowrap">
+        <p
+          className={clsx(
+            "text-sm xs:text-base font-semibold -tracking-[0.16px] uppercase whitespace-nowrap",
+            variant === "secondary" && "underline",
+          )}
+        >
           {children}
         </p>
 

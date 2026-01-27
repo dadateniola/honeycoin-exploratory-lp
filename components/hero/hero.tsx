@@ -9,7 +9,6 @@ import { ShootingStarIcon } from "../svg/svg";
 import gsap from "gsap";
 import clsx from "clsx";
 import CTA from "../cta/cta";
-import AltCTA from "../cta/alt-cta";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionHeading } from "../global/components";
@@ -149,7 +148,9 @@ const Hero = () => {
             <div className="flex justify-center gap-5">
               <CTA action={{ href: "" }}>GET STARTED</CTA>
 
-              <AltCTA href="/about">ABOUT US</AltCTA>
+              <CTA variant="secondary" action={{ href: "/about" }}>
+                ABOUT US
+              </CTA>
             </div>
           </div>
         </div>
