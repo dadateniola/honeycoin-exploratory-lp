@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
       className={clsx(
         "absolute top-0 left-0 right-0 w-full h-navbar-height px-6 md:px-10 flex items-center justify-between",
         "opacity-0 invisible", // Initial state
-        className
+        className,
       )}
     >
       {/* Logo */}
@@ -50,16 +50,14 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         <p
           className={clsx(
             "text-2xl font-semibold -tracking-[0.24px] leading-[100%]",
-            fraunces.className
+            fraunces.className,
           )}
         >
           AETHER
         </p>
       </Link>
 
-      <CTA href="">
-        JOIN WAITLIST
-      </CTA>
+      <CTA action={{ href: "" }}>JOIN WAITLIST</CTA>
     </nav>
   );
 };

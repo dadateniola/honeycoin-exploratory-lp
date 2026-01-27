@@ -56,7 +56,7 @@ const ApiDocs = () => {
             />
 
             <div className="flex justify-center">
-              <CTA href="">View API Docs</CTA>
+              <CTA action={{ href: "" }}>View API Docs</CTA>
             </div>
           </div>
         </div>

@@ -101,7 +101,7 @@ const Explore = () => {
               />
 
               <div className="flex justify-center">
-                <CTA href="">Explore FX & Liquidity</CTA>
+                <CTA action={{ href: "" }}>Explore FX & Liquidity</CTA>
               </div>
             </div>
           </div>

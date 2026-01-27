@@ -37,7 +37,7 @@ export const ExploreCard = React.forwardRef<HTMLDivElement, ExploreCardProps>(
         )}
       >
         <div className="w-full max-w-[400px] custom-flex-col gap-5">
-          <h2 className="text-black/90 text-[32px] font-recoleta -tracking-[0.32px] leading-[135%]">
+          <h2 className="text-black/90 text-[32px] font-fraunces -tracking-[0.32px] leading-[135%]">
             {title}
           </h2>
 

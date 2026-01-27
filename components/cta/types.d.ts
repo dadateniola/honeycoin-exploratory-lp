@@ -1,5 +1,10 @@
 export interface CTAProps {
-  href: string;
+  action:
+    | { href: string }
+    | {
+        type: "button" | "submit";
+        onClick?: () => void;
+      };
   color?: "#8066CC" | "#134E64" | (string & {});
   children: React.ReactNode;
 }

@@ -14,19 +14,19 @@ import gsap from "gsap";
 import clsx from "clsx";
 import { isExternalLink } from "@/utils/isExternalLink";
 
-const CTA: React.FC<CTAProps> = ({ href, color = "#134E64", children }) => {
+const CTA: React.FC<CTAProps> = ({ action, color = "#134E64", children }) => {
   // Refs
   const bgRef = useRef<HTMLDivElement>(null);
-  const linkRef = useRef<HTMLAnchorElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
 
   // Effects
   useEffect(() => {
     const bg = bgRef.current;
-    const link = linkRef.current;
     const content = contentRef.current;
+    const trigger = triggerRef.current;
 
-    if (!bg || !link || !content) return;
+    if (!bg || !content || !trigger) return;
 
     // Initial state
     gsap.set(bg, { skewX: 45, scaleX: 0, autoAlpha: 1 });
@@ -66,37 +66,40 @@ const CTA: React.FC<CTAProps> = ({ href, color = "#134E64", children }) => {
     const onMouseEnter = () => requestAnimation("enter");
     const onMouseLeave = () => requestAnimation("leave");
 
-    link.addEventListener("mouseenter", onMouseEnter);
-    link.addEventListener("mouseleave", onMouseLeave);
+    trigger.addEventListener("mouseenter", onMouseEnter);
+    trigger.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
-      link.removeEventListener("mouseenter", onMouseEnter);
-      link.removeEventListener("mouseleave", onMouseLeave);
+      trigger.removeEventListener("mouseenter", onMouseEnter);
+      trigger.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [color]);
 
   // Render
-  const external = isExternalLink(href);
-  const Anchor = external ? "a" : Link;
+  const isLink = "href" in action;
+  const href = isLink ? action.href : "#";
+  const external = isLink ? isExternalLink(href) : false;
 
-  return (
-    <Anchor
-      href={href}
-      ref={linkRef}
-      className="relative h-[52px] pl-5 pr-4 flex items-center rounded-lg overflow-hidden"
-      style={{
-        clipPath:
-          "polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%)",
-      }}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-    >
+  const sharedProps = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: triggerRef as any,
+    className:
+      "relative h-[52px] pl-5 pr-4 flex items-center rounded-lg overflow-hidden",
+    style: {
+      clipPath:
+        "polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%)",
+    },
+  };
+
+  const content = (
+    <>
       {/* Background */}
-      <div className="absolute inset-0 bg-foreground origin-center scale-125 pointer-events-none">
+      <div className="absolute inset-0 bg-foreground origin-center scale-140 pointer-events-none">
         <div
           ref={bgRef}
           className={clsx(
             "size-full",
-            "opacity-0 invisible" // Initial state
+            "opacity-0 invisible", // Initial state
           )}
           style={{ backgroundColor: color }}
         ></div>
@@ -108,13 +111,45 @@ const CTA: React.FC<CTAProps> = ({ href, color = "#134E64", children }) => {
         style={{ color }}
         className="w-full relative flex items-center justify-between gap-3"
       >
-        <p className="font-semibold -tracking-[0.16px] uppercase whitespace-nowrap">
+        <p className="text-sm xs:text-base font-semibold -tracking-[0.16px] uppercase whitespace-nowrap">
           {children}
         </p>
 
         <ArrowRightIcon />
       </div>
-    </Anchor>
+    </>
+  );
+
+  // Return
+  if (isLink) {
+    if (external) {
+      return (
+        <a
+          {...sharedProps}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {content}
+        </a>
+      );
+    }
+
+    return (
+      <Link {...sharedProps} href={href}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      {...sharedProps}
+      type={action.type ?? "button"}
+      onClick={action.onClick}
+    >
+      {content}
+    </button>
   );
 };
 

@@ -1,5 +1,5 @@
 // Types
-import type { SectionHeadingProps } from "./types";
+import type { SectionHeadingProps, ValidationTextProps } from "./types";
 
 // Imports
 import { SECTION_HEADING_CLASS } from "./data";
@@ -21,3 +21,6 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
     )}
   </div>
 );
+
+export const ValidationText: React.FC<ValidationTextProps> = ({ text }) =>
+  text && <p className="text-red-500 text-sm">{text}</p>;

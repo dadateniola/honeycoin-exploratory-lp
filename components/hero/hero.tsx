@@ -64,8 +64,16 @@ const Hero = () => {
 
       scrollTL
         .set(exploreSection, { autoAlpha: 0 })
-        .to("[data-hero-bg-left]", { xPercent: -100 }, 0)
-        .to("[data-hero-bg-right]", { xPercent: 100 }, 0)
+        .to(
+          "[data-hero-bg-left]",
+          { clipPath: "ellipse(0% 100% at 0% 100%)" },
+          0,
+        )
+        .to(
+          "[data-hero-bg-right]",
+          { clipPath: "ellipse(0% 100% at 100% 100%)" },
+          0,
+        )
         .to(exploreSection, { autoAlpha: 1 });
 
       ScrollTrigger.create({
@@ -136,7 +144,7 @@ const Hero = () => {
 
             {/* Actions */}
             <div className="flex justify-center gap-5">
-              <CTA href="">GET STARTED</CTA>
+              <CTA action={{ href: "" }}>GET STARTED</CTA>
 
               <AltCTA href="/about">ABOUT US</AltCTA>
             </div>

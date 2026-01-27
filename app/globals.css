@@ -16,6 +16,8 @@
   --color-foreground: var(--foreground);
 
   /* Fonts */
+  --font-onest: var(--onest);
+  --font-fraunces: var(--fraunces);
   --font-recoleta: var(--recoleta);
 
   /* Colors */
@@ -24,6 +26,8 @@
   --color-marquee: #fbca4a;
   --color-api-docs-card-bg: #8c75d1;
   --color-about-card-bg: #feedd2;
+
+  --color-text-primary: #111;
 
   /* Spacing */
   --spacing-navbar-height: 80px;
@@ -43,6 +47,22 @@
 
 @utility custom-flex-center {
   @apply flex items-center justify-center;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(17, 17, 17, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
 }
 
 /* Base */
