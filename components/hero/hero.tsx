@@ -91,7 +91,10 @@ const Hero = () => {
 
   return (
     <section id="hero" ref={sectionRef}>
-      <div ref={wrapperRef} className="relative w-full h-screen bg-primary">
+      <div
+        ref={wrapperRef}
+        className="relative w-full h-[max(100vh,1000px)] bg-primary"
+      >
         {/* Background */}
         <div className="fixed inset-0 overflow-hidden">
           <div

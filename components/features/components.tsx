@@ -25,6 +25,8 @@ export const FeaturesCard = React.forwardRef<HTMLDivElement, FeaturesCardProps>(
         {children}
       </div>
 
+      <div className="lg:hidden absolute inset-0 size-full bg-black/15"></div>
+
       <div
         data-features-card-content
         className={clsx(

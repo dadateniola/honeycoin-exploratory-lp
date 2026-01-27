@@ -173,7 +173,7 @@ const Contact = () => {
 
                     <ContactFormSection title="You can also" className="gap-5">
                       <a
-                        href=""
+                        href="https://calendly.com/rvysionstudio/discovery"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="py-4 px-5 flex gap-4 bg-text-primary/4 hover:bg-text-primary/8 rounded-xl transition-colors duration-300"
