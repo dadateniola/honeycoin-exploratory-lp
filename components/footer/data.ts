@@ -9,14 +9,14 @@ export const FOOTER_DATA: FooterData[] = [
   {
     title: "Contact",
     links: [
-      { href: "", label: "Contact us" },
+      { href: "/contact", label: "Contact us" },
       { href: "", label: "Book a call" },
     ],
   },
   {
     title: "Company",
     links: [
-      { href: "", label: "About us" },
+      { href: "/about", label: "About us" },
       { href: "", label: "Designed by Rvysion Studios" },
     ],
   },

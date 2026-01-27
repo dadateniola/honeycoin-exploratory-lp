@@ -17,14 +17,18 @@ import {
 } from "../svg/brands";
 
 // Fonts
-export const onest = Onest({ subsets: ["latin"] });
-export const fraunces = Fraunces({ subsets: ["latin"] });
+export const onest = Onest({ subsets: ["latin"], variable: "--onest" });
+export const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--fraunces",
+});
 
 // Constants
-export const CONTENT_CLASS = "py-[140px] px-6 md:px-10 custom-flex-col gap-[100px]";
+export const CONTENT_CLASS =
+  "py-[140px] px-6 md:px-10 custom-flex-col gap-[100px]";
 
 export const SECTION_HEADING_CLASS =
-  "text-secondary text-[58px] md:text-[68px] font-recoleta font-bold leading-[110%]";
+  "text-secondary text-[48px] xs:text-[54px] md:text-[64px] font-fraunces font-semibold leading-[110%]";
 
 export const BRAND_LOGOS = [
   "get-my-boat",

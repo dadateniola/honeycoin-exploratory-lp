@@ -105,7 +105,7 @@ const About = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-5">
-                      <CTA href="https://www.rvysion.co/works">
+                      <CTA action={{ href: "https://www.rvysion.co/works" }}>
                         VIEW RVYSION PORTFOLIO
                       </CTA>
 

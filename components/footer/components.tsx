@@ -18,7 +18,7 @@ export const FooterCard: React.FC<FooterCardProps> = ({ links, title }) => (
           href={href}
           className="flex items-center justify-between gap-5 group"
         >
-          <p className="flex-1 min-w-0 text-2xl font-recoleta font-medium leading-[120%]">
+          <p className="flex-1 min-w-0 text-2xl font-fraunces font-medium leading-[120%]">
             {label}
           </p>
 

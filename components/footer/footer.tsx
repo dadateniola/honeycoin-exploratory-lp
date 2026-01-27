@@ -108,7 +108,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
                   </p>
 
                   <div className="flex">
-                    <CTA href="">PROJECT DETAILS</CTA>
+                    <CTA action={{ href: "" }}>PROJECT DETAILS</CTA>
                   </div>
                 </div>
 
